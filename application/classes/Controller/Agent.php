@@ -12,7 +12,16 @@ class Controller_Agent extends Controller {
 
     public function action_add()
     {
-        
+        if ($this->request->method() === 'POST') {
+            $agent = ORM::factory('Agent');
+            $agent->email = $this->request->post('email');
+            $agent->save();
+
+            $this->redirect('agent/list');
+        }
+        $view = View::factory('agent/add')
+            ->bind('errors', $errors);
+        $this->response->body($view);
     }
 
 }

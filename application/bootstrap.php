@@ -103,7 +103,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/kohana/',
+	'base_url'   => '/dvlopbiz/',
 ));
 
 /**
@@ -140,3 +140,4 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'controller' => 'welcome',
 		'action'     => 'index',
 	));
+Cookie::$salt = "58b632ab7519683dc4dc4723d356557ba0f3809cb50b830cd86b6c5f671f97ad";

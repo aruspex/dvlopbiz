@@ -1,6 +1,8 @@
 <?php
 
-class Model_Agent extends ORM {
+class Model_Agent extends ORM
+{
+    protected $_table_name = 'agents';
     protected $_table_columns = array(
         'email' => null
     );

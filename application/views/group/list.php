@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dvlopbiz</title>
+    <title>Dvlopbiz - groups list</title>
 </head>
 <body>
-    <?php foreach($agents as $agent): ?>
-        <?= $agent->email ?>
+    <?php foreach($groups as $group): ?>
+        <?= $group->name ?>
     <?php endforeach; ?>
 </body>
 </html>

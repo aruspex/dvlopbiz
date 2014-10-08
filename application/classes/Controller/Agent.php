@@ -10,4 +10,9 @@ class Controller_Agent extends Controller {
 		$this->response->body($view);
 	}
 
+    public function action_add()
+    {
+        
+    }
+
 }

@@ -10,4 +10,15 @@ class Controller_Group extends Controller_Base {
         'add'  => 'group/add'
     );
 
+    public function action_detail() {
+        $id = $this->request->param('id');
+        $group = ORM::factory('Group', $id);
+        $agents = $group->agents->find_all();
+        $view = View::factory('group/detail')
+            ->bind('group', $group)->bind('agents', $agents);
+        // id должно быть числовым - проверить тип
+        $this->response->body($view);
+
+    }
+
 }

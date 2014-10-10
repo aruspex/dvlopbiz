@@ -11,4 +11,19 @@ class Model_Agent extends ORM
             'foreign_key' => 'agent_id'
         )
     );
+
+    public function rules() {
+        return array(
+            'email' => array(
+                array('not_empty'),
+                array('email'),
+                array('max_length', array(':value', 70)),
+                array(array($this, 'email_available'))
+            )
+        );
+    }
+
+    public function email_available($email) {
+        return ! ORM::factory('Agent', array('email' => $email))->loaded();
+    }
 }

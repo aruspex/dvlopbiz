@@ -15,6 +15,10 @@ echo Form::label('email', 'Email');
 echo Form::input('email');
 
 echo Form::submit(null, 'Add');
+if (isset($errors))
+{
+    echo $errors;
+}
 
 
 echo Form::close();

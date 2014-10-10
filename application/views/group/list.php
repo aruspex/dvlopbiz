@@ -17,5 +17,8 @@ echo Form::input('name');
 
 echo Form::submit(null, 'Add');
 
-
+if (isset($errors))
+{
+    echo $errors;
+}
 echo Form::close();

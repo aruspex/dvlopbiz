@@ -9,11 +9,12 @@ abstract class Controller_Base extends Controller_Template {
 
     public function action_list()
     {   
-        // View::set_global('active', 'FUUUUUUUU');
+        $session = Session::instance();
+        $errors = $session->get_once('errors');
         $items = ORM::factory($this->model)->find_all();
-
         $view = View::factory($this->view_list['list'])
             ->bind($this->items, $items);
+        $view->errors = $errors;
         $this->template->content = $view;
         $this->template->active = $this->model;
     }
@@ -27,7 +28,16 @@ abstract class Controller_Base extends Controller_Template {
             {
                 $item->$key = $value;
             }
-            $item->save();
+            try
+            {
+                $item->save();
+            }
+            catch (ORM_Validation_Exception $e)
+            {
+                $session = Session::instance();
+                $errors = $e->errors('models');
+                $session->set('errors', $errors[$key]);
+            }
         }
         $this->redirect($this->view_list['list']);
         // $view = View::factory($this->view_list['add'])

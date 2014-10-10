@@ -28,12 +28,11 @@ abstract class Controller_Base extends Controller_Template {
                 $item->$key = $value;
             }
             $item->save();
-
-            $this->redirect($this->view_list['list']);
         }
-        $view = View::factory($this->view_list['add'])
-            ->bind('errors', $errors);
-        $this->response->body($view);
+        $this->redirect($this->view_list['list']);
+        // $view = View::factory($this->view_list['add'])
+        //     ->bind('errors', $errors);
+        // $this->response->body($view);
     }
 
     public function action_delete()

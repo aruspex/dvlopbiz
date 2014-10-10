@@ -8,3 +8,14 @@ foreach($groups as $group)
     echo Form::submit(null, 'Delete');
     echo Form::close();
 }
+
+
+echo Form::open('group/add');
+
+echo Form::label('name', 'Name');
+echo Form::input('name');
+
+echo Form::submit(null, 'Add');
+
+
+echo Form::close();

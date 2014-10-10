@@ -77,3 +77,43 @@ body {
     border-bottom: 0;
   }
 }
+
+.add_form {
+  padding-left: 30px;
+}
+
+.delete_form {
+  display: inline;
+  float: right;
+  margin: 14px;
+}
+
+.list_item {
+  width: inherit;
+  margin: 8px;
+  padding: 10px;
+}
+
+.item {
+  width: 80%;
+  float: left;
+  margin: 10px;
+  padding: 12px;
+  background-color: #eeeeee;
+}
+
+div.form {
+  clear: both;
+  padding-top: 20px;
+}
+
+select {
+  width: 50%;
+  height: 150px;
+}
+
+.add-to-group-btn {
+  display: block;
+  margin-left: 200px;
+  margin-top: 7px;
+}

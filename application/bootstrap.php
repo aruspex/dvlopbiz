@@ -137,7 +137,7 @@ Kohana::modules(array(
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'main',
-		'action'     => 'index',
+		'controller' => 'group',
+		'action'     => 'list',
 	));
 Cookie::$salt = "58b632ab7519683dc4dc4723d356557ba0f3809cb50b830cd86b6c5f671f97ad";

@@ -1,3 +1,4 @@
+<?php if(count($agents)) : ?>
 <div class="list">
     <ul class="list-unstyled">
         <?php foreach($agents as $agent): ?>
@@ -13,6 +14,13 @@
         <?php endforeach; ?>
     </ul>
 </div>
+<?php else : ?>
+    <div class="alert alert-danger" role="alert">
+        There is no agents yet!
+    </div>
+<?php endif; ?>
+
+
 
 <div class="form">
     <?php
@@ -23,7 +31,7 @@
 
     if (isset($errors))
     {
-        echo $errors;
+        echo '<div class="alert alert-danger errors" role="alert">'. $errors . '</div>';
     }
 
 

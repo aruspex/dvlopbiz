@@ -26,7 +26,7 @@ abstract class Controller_Base extends Controller_Template {
             $post_info = $this->request->post();
             foreach($post_info as $key => $value)
             {
-                $item->$key = $value;
+                $item->$key = strip_tags($value);
             }
             try
             {

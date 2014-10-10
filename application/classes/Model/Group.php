@@ -16,6 +16,7 @@ class Model_Group extends ORM
         return array(
             'name' => array(
                 array('not_empty'),
+                array('alpha_numeric'),
                 array('min_length', array(':value', 4)),
                 array('max_length', array(':value', 70)),
                 array(array($this, 'name_available'))

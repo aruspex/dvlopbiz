@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Group extends Controller_Base {
+class Controller_Group extends Controller_Base
+{
 
     protected $model = 'Group';
     protected $items = 'groups';
@@ -12,10 +13,11 @@ class Controller_Group extends Controller_Base {
 
     public function action_detail() {
         $id = $this->request->param('id');
-        $group = ORM::factory('Group', $id);
+        $group = ORM::factory('Group')->find();
+        var_dump($group);
         $agents = $group->agents->find_all();
         $view = View::factory('group/detail')
-            ->bind('group', $group)->bind('agents', $agents);
+            ->bind('group', $group->name)->bind('agents', $agents);
         // id должно быть числовым - проверить тип
         $this->response->body($view);
 

@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-abstract class Controller_Base extends Controller_Template {
-
+abstract class Controller_Base extends Controller_Template
+{
     protected $view_list;
     protected $model;
     protected $items;
@@ -24,25 +24,18 @@ abstract class Controller_Base extends Controller_Template {
         if ($this->request->method() === 'POST') {
             $item = ORM::factory($this->model);
             $post_info = $this->request->post();
-            foreach($post_info as $key => $value)
-            {
+            foreach($post_info as $key => $value) {
                 $item->$key = strip_tags($value);
             }
-            try
-            {
+            try {
                 $item->save();
-            }
-            catch (ORM_Validation_Exception $e)
-            {
+            } catch (ORM_Validation_Exception $e) {
                 $session = Session::instance();
                 $errors = $e->errors('models');
                 $session->set('errors', $errors[$key]);
             }
         }
         $this->redirect($this->view_list['list']);
-        // $view = View::factory($this->view_list['add'])
-        //     ->bind('errors', $errors);
-        // $this->response->body($view);
     }
 
     public function action_delete()
@@ -52,6 +45,5 @@ abstract class Controller_Base extends Controller_Template {
                 ->delete();
         }
         $this->redirect($this->view_list['list']);
-
     }    
 }

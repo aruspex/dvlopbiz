@@ -12,7 +12,8 @@ class Model_Group extends ORM
         )
     );
 
-    public function rules() {
+    public function rules()
+    {
         return array(
             'name' => array(
                 array('not_empty'),
@@ -24,11 +25,13 @@ class Model_Group extends ORM
         );
     }
 
-    public function name_available($name) {
+    public function name_available($name)
+    {
         return ! ORM::factory('Group', array('name' => $name))->loaded();
     }
 
-    public function get_agents_not_in($name) {
+    public function get_agents_not_in($name)
+    {
         return DB::select('email')
             ->from('agents')
             ->where('email', 'NOT IN', DB::select('email')

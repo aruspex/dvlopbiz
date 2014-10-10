@@ -15,10 +15,23 @@ class Controller_Group extends Controller_Base
         $name = $this->request->param('id');
         $group = ORM::factory('Group', array('name' => $name));
         $agents = $group->agents->find_all();
+        $agents_to_add = ORM::factory('Group')->get_agents_not_in($name);
+
         $view = View::factory('group/detail')
             ->bind('agents', $agents)
+            ->set('agents_to_add', $agents_to_add)
             ->set('group', $group);
         $this->template->content = $view;
+
+    }
+
+    protected function get_group_detail_url($name)
+    {
+        return Route::get('default')->uri(array(
+            'controller' => 'group',
+            'action'     => 'detail',
+            'id'         => $name
+        ));
 
     }
 
@@ -33,13 +46,23 @@ class Controller_Group extends Controller_Base
             $group->remove('agents', $agent_id);
         }
 
-        $url = Route::get('default')->uri(array(
-            'controller' => 'group',
-            'action'     => 'detail',
-            'id'         => $group->name
-        ));
+        $this->redirect($this->get_group_detail_url($group->name));
+    }
 
-        $this->redirect($url);
+    public function action_add_agent() {
+        if ($this->request->method() === 'POST')
+        {
+            $agent_email = $this->request->post('agent');
+            $agent = ORM::factory('Agent', array('email' => $agent_email));
+
+            $group_id = intval($this->request->post('group_id'));
+
+            $group = ORM::factory('Group', $group_id);
+
+            $group->add('agents', $agent->id);
+        }
+
+        $this->redirect($this->get_group_detail_url($group->name));
     }
 
 }

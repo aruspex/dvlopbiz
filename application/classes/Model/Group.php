@@ -26,4 +26,18 @@ class Model_Group extends ORM
     public function name_available($name) {
         return ! ORM::factory('Group', array('name' => $name))->loaded();
     }
+
+    public function get_agents_not_in($name) {
+        return DB::select('email')
+            ->from('agents')
+            ->where('email', 'NOT IN', DB::select('email')
+                ->from('agents')
+                ->join('agents_groups')
+                ->on('agents.id', '=', 'agents_groups.agent_id')
+                ->join('groups')
+                ->on('groups.id', '=', 'agents_groups.group_id')
+                ->where('name', '=', $name))
+            ->execute()
+            ->as_array('email', 'email');
+    }
 }

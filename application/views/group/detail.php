@@ -20,6 +20,13 @@
             </li>
         <?php endforeach; ?>
     </ul>
+    <?php
+        echo Form::open('group/add_agent');
+        echo Form::select('agent', $agents_to_add, null);
+        echo Form::hidden('group_id', $group->id);
+        echo Form::submit(null, 'Add to this group');
+        echo Form::close();
+    ?>
 
 </body>
 </html>

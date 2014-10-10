@@ -5,9 +5,14 @@
     <title>Dvlopbiz - group info</title>
 </head>
 <body>
-    <h1>Users in group <?= $group ?></h1>
-    <?php foreach($agents as $agent): ?>
-        <?= $agent->email ?>
-    <?php endforeach; ?>
+    <h1>Agents in group <?= $group ?></h1>
+    <ul>
+        <?php foreach($agents as $agent): ?>
+            <li>
+                <?= $agent->email ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
 </body>
 </html>

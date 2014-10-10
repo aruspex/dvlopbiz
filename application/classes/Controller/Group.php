@@ -13,13 +13,12 @@ class Controller_Group extends Controller_Base
 
     public function action_detail() {
         $id = $this->request->param('id');
-        $group = ORM::factory('Group')->find();
-        var_dump($group);
+        $group = ORM::factory('Group')->find($id);
         $agents = $group->agents->find_all();
         $view = View::factory('group/detail')
-            ->bind('group', $group->name)->bind('agents', $agents);
-        // id должно быть числовым - проверить тип
-        $this->response->body($view);
+            ->bind('agents', $agents)
+            ->set('group', $group->name);
+        $this->template->content = $view;
 
     }
 

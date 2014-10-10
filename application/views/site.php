@@ -11,7 +11,7 @@
     <div class="header">
         <ul class="nav nav-pills pull-right">
             <?php foreach (array('Group', 'Agent') as $item): ?>
-                <?php if ($active == $item): ?>
+                <?php if (isset($active) && $active == $item): ?>
                     <li class='active'>
                 <?php else: ?>
                     <li>

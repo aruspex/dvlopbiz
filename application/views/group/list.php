@@ -2,7 +2,12 @@
 
 foreach($groups as $group)
 {
-    echo $group->name;
+    $route = Route::get('default')->uri(array(
+        'controller' => 'group',
+        'action' => 'detail',
+        'id' => $group->id
+    ));
+    echo HTML::anchor($route, $group->name);
     echo Form::open('group/delete');
     echo Form::hidden('id', $group->id);
     echo Form::submit(null, 'Delete');
